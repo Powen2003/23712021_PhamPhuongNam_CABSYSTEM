@@ -67,6 +67,42 @@
 - **Xử lý thanh toán:** Hỗ trợ thanh toán bằng Tiền mặt hoặc Điện tử qua cổng trung gian. Trường hợp lỗi thanh toán điện tử, hệ thống cho phép chọn lại phương thức khác.
 - **Đánh giá:** Khách hàng chấm điểm và gửi phản hồi chất lượng sau khi hoàn thành.
 - **Khôi phục trạng thái:** Tài xế trở lại trạng thái sẵn sàng nhận đơn mới.
+
+## Functional Requirements (Yêu cầu Chức năng)
+
+### 1. User & Auth Module
+- **FR-01:** Khách hàng/Tài xế đăng ký, đăng nhập và cập nhật hồ sơ cá nhân.
+- **FR-02:** Tài xế/Admin cập nhật thông tin phương tiện và bằng lái.
+- **FR-03:** Phân quyền hệ thống chặt chẽ cho Nhân viên vận hành.
+
+### 2. Booking & Dispatch Module
+- **FR-04:** Khách nhập điểm đón/đến, chọn loại xe và xác nhận đặt xe.
+- **FR-05:** Tự động quét GPS và gán đơn cho tài xế gần nhất.
+- **FR-06:** Tài xế có quyền Chấp nhận hoặc Từ chối chuyến đi.
+- **FR-07:** Tự động chuyển tiếp đơn sang tài xế khác nếu bị từ chối/timeout.
+- **FR-08:** Thông báo cho khách hàng nếu không tìm thấy xe khả dụng.
+
+### 3. Tracking & Trip Module
+- **FR-09:** Tài xế bật/tắt trạng thái sẵn sàng làm việc.
+- **FR-10:** Tài xế cập nhật trạng thái: *Đã đến điểm đón -> Đã đón khách -> Đang di chuyển -> Hoàn thành*.
+- **FR-11:** Lưu trữ tọa độ GPS và hiển thị vị trí xe di chuyển Realtime cho khách.
+- **FR-12:** Tính toán và hiển thị thời gian dự kiến tài xế đến (ETA).
+
+### 4. Fare & Payment Module
+- **FR-13:** Tự động tính cước phí chuyến đi dựa trên khoảng cách và loại dịch vụ.
+- **FR-14:** Hỗ trợ thanh toán Tiền mặt và Thanh toán điện tử (qua cổng bên thứ 3).
+- **FR-15:** Không lưu trực tiếp thông tin thẻ/tài khoản ngân hàng nhạy cảm.
+- **FR-16:** Xử lý ngoại lệ và cho phép chọn lại phương thức khi thanh toán lỗi.
+
+### 5. Notification Module
+- **FR-17:** Gửi thông báo realtime cho Khách hàng qua từng giai đoạn của chuyến đi.
+- **FR-18:** Gửi thông báo chuyến mới và thay đổi thông tin cho Tài xế.
+
+### 6. Admin & Reporting Module
+- **FR-19:** Dashboard quản trị giám sát chuyến đi đang chạy và hỗ trợ sự cố.
+- **FR-20:** Cho phép Khách hàng xem lịch sử chuyến đi và đánh giá tài xế.
+- **FR-21:** Xuất báo cáo thống kê: Doanh thu, tổng chuyến, tỷ lệ hoàn thành/hủy.
+- **FR-22:** Lưu nhật ký thao tác (Audit Logs) để phục vụ kiểm toán sự cố.
 ##  System Architecture & Diagrams
 
 ###  Use Case Diagram
