@@ -185,3 +185,18 @@ graph TD
 
     %% External System Interactions
     UC3 .-> P
+```
+## 10. Acceptance Criteria (Tiêu chí Chấp nhận)
+
+### 10.1 Quản lý Đặt xe & Ghép chuyến
+- **AC-01 (Đặt xe):** Khách chọn xong điểm đi/đến -> Hiển thị cước phí -> Bấm xác nhận -> Đơn chuyển sang `SEARCHING`.
+- **AC-02 (Chuyển tiếp đơn):** Tài xế từ chối hoặc quá 20 giây không nhận -> Tự động chuyển đơn sang tài xế tiếp theo.
+- **AC-03 (Hết xe):** Quét hết tài xế không ai nhận -> Thông báo lỗi cho khách và hiển thị nút "Thử lại".
+
+### 10.2 Định vị & Tiến trình
+- **AC-04 (Trạng thái):** Tài xế bấm thao tác -> Hệ thống cập nhật đúng luồng `ASSIGNED` -> `ARRIVED` -> `IN_PROGRESS` -> `COMPLETED`.
+- **AC-05 (Realtime):** Tọa độ GPS của xe được đồng bộ lên bản đồ ứng dụng khách hàng mỗi 3-5 giây.
+
+### 10.3 Thanh toán & Đánh giá
+- **AC-06 (Thanh toán thành công):** Trừ tiền qua cổng thanh toán thành công -> Đơn thành `PAID` -> Bật màn hình đánh giá sao.
+- **AC-07 (Lỗi thanh toán):** Cổng thanh toán báo lỗi -> Cho phép khách hàng chuyển sang trả Tiền mặt.
