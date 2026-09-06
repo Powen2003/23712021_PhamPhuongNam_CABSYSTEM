@@ -1,3 +1,14 @@
+# Software Requirements Specification (SRS) - CAB System
+
+## 1. Business Goals (Mục tiêu Kinh doanh)
+- **BG-01 (Tự động hóa):** Chuyển đổi từ phân công thủ công sang hệ thống ghép chuyến tự động dựa trên vị trí GPS để tối ưu thời gian chờ.
+- **BG-02 (Trải nghiệm người dùng):** Cho phép theo dõi hành trình realtime, minh bạch cước phí và hỗ trợ thanh toán không dùng tiền mặt.
+- **BG-03 (Quản trị tập trung):** Xây dựng công cụ quản lý vận hành theo dõi trạng thái tài xế, chuyến đi và báo cáo doanh thu theo thời gian thực.
+- **BG-04 (Khả năng mở rộng):** Đảm bảo hệ thống chịu tải cao vào giờ cao điểm và dễ dàng tích hợp thêm các dịch vụ/đối tác mới trong tương lai.
+
+## 2. System Architecture & Diagrams
+
+### 2.1 Use Case Diagram
 ```mermaid
 graph TD
     %% Actors
@@ -36,4 +47,3 @@ graph TD
 
     %% System Interactions
     UC3 .-> P
-```
