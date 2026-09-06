@@ -18,6 +18,23 @@
 5. **Notification Module:** Gửi thông báo trạng thái chuyến đi cho khách hàng và tài xế.
 6. **Admin & Reporting Module:** Quản lý danh mục, hỗ trợ vận hành và xuất báo cáo thống kê.
 
+## Business Requirements (Yêu cầu Kinh doanh)
+
+### 1. Vấn đề & Lý do đầu tư
+- Quy trình phân công tài xế cũ làm thủ công, khó theo dõi chuyến đi và không thể mở rộng quy mô.
+- Cần xây dựng nền tảng CAB mới tự động hóa hoàn toàn luồng đặt xe và điều phối.
+
+### 2. Phạm vi Dự án (Project Scope)
+- **In-Scope:** Luồng đặt xe end-to-end cho Khách hàng, Tài xế và Admin; Tích hợp thanh toán điện tử; Hệ thống thông báo; Dashboard báo cáo vận hành.
+- **Out-of-Scope:** Dịch vụ giao hàng, giao đồ ăn, tính năng đi chung xe (Ride-sharing).
+
+### 3. Ràng buộc Dự án (Constraints)
+- **Thời gian:** Hoàn thành triển khai trong 7 tuần.
+- **Bảo mật:** Không lưu thông tin thẻ ngân hàng trực tiếp trên hệ thống; phân quyền chi tiết cho Admin.
+- **Chịu lỗi:** Lỗi từ dịch vụ thanh toán/thông báo không được làm ảnh hưởng đến luồng đặt xe chính.
+
+
+
 ## 3. System Architecture & Diagrams
 
 ### 3.1 Use Case Diagram
