@@ -200,3 +200,19 @@ graph TD
 ### 10.3 Thanh toán & Đánh giá
 - **AC-06 (Thanh toán thành công):** Trừ tiền qua cổng thanh toán thành công -> Đơn thành `PAID` -> Bật màn hình đánh giá sao.
 - **AC-07 (Lỗi thanh toán):** Cổng thanh toán báo lỗi -> Cho phép khách hàng chuyển sang trả Tiền mặt.
+
+## 11. Requirements Traceability Matrix (Bảng truy vết yêu cầu)
+
+| Mã FR | Tên Yêu cầu Chức năng | Business Goals | Module | Use Case | Acceptance Criteria |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **FR-01** | Đăng ký / Đăng nhập | BG-05 | User & Auth | UC01 | AC-01 |
+| **FR-04** | Tạo đơn & Đặt xe | BG-03, BG-04 | Booking & Dispatch | UC02 | AC-01 |
+| **FR-05** | Tự động ghép chuyến theo GPS | BG-01 | Booking & Dispatch | UC02, UC05 | AC-01 |
+| **FR-07** | Tự động chuyển đơn khi bị từ chối/timeout | BG-02 | Booking & Dispatch | UC05 | AC-02 |
+| **FR-08** | Xử lý khi hết xe (EX-01) | BG-02 | Booking & Dispatch | UC02, UC05 | AC-03 |
+| **FR-10** | Cập nhật tiến trình chuyến đi | BG-03 | Tracking & Trip | UC03, UC06 | AC-04 |
+| **FR-11** | Theo dõi vị trí Realtime | BG-03 | Tracking & Trip | UC02, UC04 | AC-05 |
+| **FR-14** | Thanh toán Tiền mặt / Ví điện tử | BG-04 | Fare & Payment | UC03 | AC-06 |
+| **FR-16** | Xử lý lỗi thanh toán (EX-02) | BG-04 | Fare & Payment | UC03 | AC-07 |
+| **FR-19** | Dashboard quản trị & Giám sát | BG-05 | Admin & Reporting | UC07 | AC-04 |
+| **FR-21** | Báo cáo doanh thu & Số chuyến | BG-06 | Admin & Reporting | UC08 | AC-06 |
