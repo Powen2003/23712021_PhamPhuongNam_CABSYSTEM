@@ -1,4 +1,5 @@
 # Software Requirements Specification (SRS) - CAB System
+
 ## 1. Business Goals (Mục tiêu Kinh doanh)
 
 - **BG-01 (Tự động hóa phân công):** Chuyển từ phân công thủ công sang hệ thống tự động tìm và gán tài xế phù hợp theo vị trí GPS.
@@ -8,7 +9,6 @@
 - **BG-05 (Hỗ trợ vận hành):** Cho phép nhân viên theo dõi các chuyến đi đang diễn ra, quản lý thông tin tài xế/khách hàng và hỗ trợ khi có sự cố.
 - **BG-06 (Báo cáo cơ bản):** Cung cấp các số liệu thống kê cơ bản về doanh thu, số lượng chuyến đi và tỷ lệ hoàn thành.
 
-
 ## 2. Danh sách các Module Hệ thống (System Modules)
 
 1. **User & Auth Module:** Quản lý đăng ký, đăng nhập và phân quyền (Khách hàng, Tài xế, Admin).
@@ -17,9 +17,11 @@
 4. **Fare & Payment Module:** Tính cước tự động và tích hợp cổng thanh toán điện tử.
 5. **Notification Module:** Gửi thông báo trạng thái chuyến đi cho khách hàng và tài xế.
 6. **Admin & Reporting Module:** Quản lý danh mục, hỗ trợ vận hành và xuất báo cáo thống kê.
+
 ## 3. System Architecture & Diagrams
 
 ### 3.1 Use Case Diagram
+
 ```mermaid
 graph TD
     %% Actors
@@ -56,5 +58,5 @@ graph TD
     O --> UC7
     O --> UC8
 
-    %% System Interactions
+    %% External System Interactions
     UC3 .-> P
