@@ -103,8 +103,45 @@
 - **FR-20:** Cho phép Khách hàng xem lịch sử chuyến đi và đánh giá tài xế.
 - **FR-21:** Xuất báo cáo thống kê: Doanh thu, tổng chuyến, tỷ lệ hoàn thành/hủy.
 - **FR-22:** Lưu nhật ký thao tác (Audit Logs) để phục vụ kiểm toán sự cố.
-##  System Architecture & Diagrams
 
+## 7. Các Trường hợp Ngoại lệ Nghiệp vụ (Business Exceptions)
+
+### EX-01: Không tìm thấy tài xế (No Driver Available)
+- **Điều kiện:** Không có tài xế rảnh trong bán kính hoặc tất cả tài xế được đề xuất đều từ chối/timeout.
+- **Xử lý:** Hệ thống chuyển trạng thái chuyến đi sang CANCELLED, hiển thị thông báo lỗi rõ ràng cho Khách hàng và cung cấp nút "Thử lại" hoặc gợi ý đổi loại phương tiện.
+
+### EX-02: Thanh toán điện tử thất bại (Payment Failure)
+- **Điều kiện:** Cổng thanh toán báo lỗi giao dịch (không đủ số dư, lỗi kết nối API).
+- **Xử lý:** Hệ thống gửi thông báo cho Khách hàng, yêu cầu thực hiện lại giao dịch hoặc chuyển sang phương thức thanh toán Tiền mặt.
+
+### EX-03: Tài xế hủy chuyến sau khi đã nhận (Driver Cancellation)
+- **Điều kiện:** Tài xế bấm hủy đơn vì sự cố cá nhân/kỹ thuật.
+- **Xử lý:** Hệ thống ghi nhận lý do hủy của tài xế và tự động đưa đơn hàng quay lại luồng tìm tài xế mới cho Khách hàng mà không hủy toàn bộ đơn.
+
+### EX-04: Mất kết nối GPS/Mạng trong chuyến đi (Connection Lost)
+- **Điều kiện:** Ứng dụng của tài xế mất kết nối Internet hoặc GPS.
+- **Xử lý:** Lưu tọa độ hành trình vào bộ nhớ tạm trên máy (Local Cache) và tự động đồng bộ lại lên Server ngay khi có kết nối mạng.
+
+## 8. Non-Functional Requirements (Yêu cầu Phi chức năng)
+
+### 1. Hiệu năng & Khả năng chịu tải (Performance & Scalability)
+- **NFR-01:** Thời gian phản hồi tính cước < 2 giây; thời gian phát thông báo đặt xe < 3 giây.
+- **NFR-02:** Hệ thống vận hành ổn định trong giờ cao điểm khi lượng truy cập tăng đột biến.
+- **NFR-03:** Các module có khả năng mở rộng (Scale) độc lập theo nhu cầu tải.
+
+### 2. Độ tin cậy & Chịu lỗi (Reliability & Fault Tolerance)
+- **NFR-04:** Sự cố ở Module Thanh toán/Thông báo không làm ảnh hưởng đến luồng Đặt xe cốt lõi.
+- **NFR-05:** Tự động lưu bộ nhớ tạm (Cache) khi mất mạng/GPS và đồng bộ lại khi có kết nối.
+
+### 3. Bảo mật (Security & Compliance)
+- **NFR-06:** Bắt buộc xác thực người dùng và phân quyền chặt chẽ cho Admin.
+- **NFR-07:** Không lưu trực tiếp thông tin thẻ ngân hàng nhạy cảm trên hệ thống CAB.
+- **NFR-08:** Lưu log hệ thống (Audit Logs) đối với các thao tác quan trọng để kiểm tra sự cố.
+
+### 4. Khả năng mở rộng tương lai (Extensibility)
+- **NFR-09:** Cấu trúc linh hoạt, sẵn sàng tích hợp thêm cổng thanh toán, kênh thông báo hoặc loại hình dịch vụ mới.
+
+##  System Architecture & Diagrams
 ###  Use Case Diagram
 
 ```mermaid
