@@ -1,16 +1,25 @@
 # Software Requirements Specification (SRS) - CAB System
-
 ## 1. Business Goals (Mục tiêu Kinh doanh)
-- **BG-01 (Tự động hóa):** Chuyển đổi từ phân công thủ công sang hệ thống ghép chuyến tự động dựa trên vị trí GPS để tối ưu thời gian chờ.
-- **BG-02 (Trải nghiệm người dùng):** Cho phép theo dõi hành trình realtime, minh bạch cước phí và hỗ trợ thanh toán không dùng tiền mặt.
-- **BG-03 (Quản trị tập trung):** Xây dựng công cụ quản lý vận hành theo dõi trạng thái tài xế, chuyến đi và báo cáo doanh thu theo thời gian thực.
-- **BG-04 (Khả năng mở rộng):** Đảm bảo hệ thống chịu tải cao vào giờ cao điểm và dễ dàng tích hợp thêm các dịch vụ/đối tác mới trong tương lai.
-- **BG-05 (Bảo mật & Tuân thủ):** Bảo vệ dữ liệu cá nhân, không lưu thông tin thẻ nhạy cảm và duy trì log hệ thống để kiểm toán.
-- **BG-06 (Độ tin cậy & Chịu lỗi):** Đảm bảo hệ thống đạt độ sẵn sàng cao vào giờ cao điểm, sự cố ở tính năng thanh toán/thông báo không làm sập luồng đặt xe.
-- **BG-07 (Tối ưu hiệu suất tài xế):** Giảm thời gian xe chạy rỗng, tự động điều phối chuyến để tăng thu nhập cho tài xế và giảm tỷ lệ hủy chuyến.
-## 2. System Architecture & Diagrams
 
-### 2.1 Use Case Diagram
+- **BG-01 (Tự động hóa phân công):** Chuyển từ phân công thủ công sang hệ thống tự động tìm và gán tài xế phù hợp theo vị trí GPS.
+- **BG-02 (Xử lý chuyển tiếp đơn):** Tự động tìm tài xế thay thế khi tài xế được đề xuất từ chối hoặc hết thời gian phản hồi.
+- **BG-03 (Theo dõi realtime):** Cho phép khách hàng theo dõi vị trí tài xế, trạng thái chuyến đi và thời gian dự kiến đến (ETA).
+- **BG-04 (Minh bạch & Thanh toán):** Tự động tính cước rõ ràng và hỗ trợ cả 2 phương thức: tiền mặt và thanh toán điện tử qua cổng trung gian.
+- **BG-05 (Hỗ trợ vận hành):** Cho phép nhân viên theo dõi các chuyến đi đang diễn ra, quản lý thông tin tài xế/khách hàng và hỗ trợ khi có sự cố.
+- **BG-06 (Báo cáo cơ bản):** Cung cấp các số liệu thống kê cơ bản về doanh thu, số lượng chuyến đi và tỷ lệ hoàn thành.
+
+
+## 2. Danh sách các Module Hệ thống (System Modules)
+
+1. **User & Auth Module:** Quản lý đăng ký, đăng nhập và phân quyền (Khách hàng, Tài xế, Admin).
+2. **Booking & Dispatch Module:** Tiếp nhận yêu cầu đặt xe, tự động tìm và gán chuyến cho tài xế phù hợp.
+3. **Tracking & Trip Module:** Cập nhật vị trí GPS realtime và quản lý các trạng thái của chuyến đi.
+4. **Fare & Payment Module:** Tính cước tự động và tích hợp cổng thanh toán điện tử.
+5. **Notification Module:** Gửi thông báo trạng thái chuyến đi cho khách hàng và tài xế.
+6. **Admin & Reporting Module:** Quản lý danh mục, hỗ trợ vận hành và xuất báo cáo thống kê.
+## 3. System Architecture & Diagrams
+
+### 3.1 Use Case Diagram
 ```mermaid
 graph TD
     %% Actors
