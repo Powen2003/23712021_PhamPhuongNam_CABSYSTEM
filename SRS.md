@@ -33,11 +33,26 @@
 - **Bảo mật:** Không lưu thông tin thẻ ngân hàng trực tiếp trên hệ thống; phân quyền chi tiết cho Admin.
 - **Chịu lỗi:** Lỗi từ dịch vụ thanh toán/thông báo không được làm ảnh hưởng đến luồng đặt xe chính.
 
+## 4. Customer Requirements (Yêu cầu của Khách hàng)
 
+### 4.1 Khách hàng (Customer)
+- Đăng ký/đăng nhập, nhập điểm đón/đến, chọn loại xe và gửi yêu cầu.
+- Theo dõi vị trí tài xế, xem ETA, xem lịch sử chuyến đi và đánh giá tài xế.
 
-## 3. System Architecture & Diagrams
+### 4.2 Tài xế (Driver)
+- Bật/tắt trạng thái sẵn sàng, nhận/từ chối chuyến, cập nhật tiến trình chuyến đi và chia sẻ vị trí GPS.
 
-### 3.1 Use Case Diagram
+### 4.3 Nhân viên Vận hành (Operator)
+- Quản lý tài khoản/phương tiện, giám sát các chuyến đi realtime, hỗ trợ xử lý sự cố và xem báo cáo doanh thu/hiệu suất.
+
+### 4.4 Quy tắc Nghiệp vụ Cốt lõi
+- Tự động ghép chuyến theo vị trí GPS, tự động chuyển tài xế khác khi bị từ chối/timeout.
+- Tính cước tự động, tích hợp cổng thanh toán điện tử an toàn (không lưu thông tin thẻ).
+- Hệ thống chịu lỗi tốt, các dịch vụ thanh toán/thông báo hoạt động độc lập với luồng đặt xe.
+
+##  System Architecture & Diagrams
+
+###  Use Case Diagram
 
 ```mermaid
 graph TD
