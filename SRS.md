@@ -130,9 +130,22 @@
 ### 8.4 Khả năng mở rộng tương lai (Extensibility)
 - **NFR-09:** Cấu trúc linh hoạt, sẵn sàng tích hợp thêm cổng thanh toán, kênh thông báo hoặc loại hình dịch vụ mới.
 
-## 9. System Architecture & Diagrams
+## 9. System Architecture & Use Case Diagrams
 
-### 9.1 Use Case Diagram
+### 9.1 Danh sách Use Case (Use Case List)
+
+| Mã UC | Tên Use Case | Actor chính | Mô tả |
+| :--- | :--- | :--- | :--- |
+| **UC01** | Đăng ký / Đăng nhập | Khách hàng, Tài xế, Operator | Xác thực người dùng truy cập hệ thống. |
+| **UC02** | Đặt xe & Theo dõi vị trí | Khách hàng | Nhập lộ trình, xem cước, đặt xe và theo dõi hành trình realtime. |
+| **UC03** | Thanh toán & Đánh giá | Khách hàng | Thực hiện thanh toán tiền mặt/điện tử và đánh giá tài xế. |
+| **UC04** | Cập nhật Trạng thái & Vị trí | Tài xế | Bật/tắt chế độ sẵn sàng và chia sẻ vị trí GPS realtime. |
+| **UC05** | Nhận / Từ chối chuyến | Tài xế / Hệ thống | Tiếp nhận thông báo chuyến xe mới, chấp nhận/từ chối hoặc tự chuyển đơn khi timeout. |
+| **UC06** | Quản lý Người dùng & Phương tiện | Operator | Quản lý thông tin tài khoản khách hàng, tài xế và hồ sơ xe. |
+| **UC07** | Theo dõi Chuyến đi & Xử lý sự cố | Operator | Giám sát các chuyến đi đang diễn ra và can thiệp hỗ trợ khi có lỗi. |
+| **UC08** | Xem Báo cáo & Thống kê | Operator | Tra cứu báo cáo doanh thu, tổng số chuyến, tỷ lệ hoàn thành/hủy. |
+
+### 9.2 Sơ đồ Use Case Tổng quan (Use Case Diagram)
 
 ```mermaid
 graph TD
@@ -143,16 +156,16 @@ graph TD
     P[Hệ thống Thanh toán]
 
     subgraph CAB System
-        UC1(Đăng ký / Đăng nhập)
-        UC2(Đặt xe & Theo dõi vị trí)
-        UC3(Thanh toán & Đánh giá)
+        UC1(UC01: Đăng ký / Đăng nhập)
+        UC2(UC02: Đặt xe & Theo dõi vị trí)
+        UC3(UC03: Thanh toán & Đánh giá)
         
-        UC4(Cập nhật trạng thái sẵn sàng / Vị trí)
-        UC5(Nhận / Từ chối chuyến)
+        UC4(UC04: Cập nhật Trạng thái & Vị trí)
+        UC5(UC05: Nhận / Từ chối chuyến)
         
-        UC6(Quản lý người dùng & Phương tiện)
-        UC7(Theo dõi chuyến đi & Xử lý sự cố)
-        UC8(Xem báo cáo & Thống kê)
+        UC6(UC06: Quản lý Người dùng & Phương tiện)
+        UC7(UC07: Theo dõi Chuyến đi & Xử lý sự cố)
+        UC8(UC08: Xem Báo cáo & Thống kê)
     end
 
     %% Customer Relations
