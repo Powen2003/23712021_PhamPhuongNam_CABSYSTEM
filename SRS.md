@@ -50,6 +50,23 @@
 - Tính cước tự động, tích hợp cổng thanh toán điện tử an toàn (không lưu thông tin thẻ).
 - Hệ thống chịu lỗi tốt, các dịch vụ thanh toán/thông báo hoạt động độc lập với luồng đặt xe.
 
+## Quy trình Nghiệp vụ Chi tiết từ Đặt xe đến Kết thúc Chuyến đi
+
+### 1. Giai đoạn 1: Đặt xe & Phân công tự động
+- **Khởi tạo:** Khách hàng nhập điểm đón, điểm đến và chọn loại dịch vụ.
+- **Tính cước:** Hệ thống hiển thị giá cước dự kiến và thời gian chờ.
+- **Ghép chuyến:** Hệ thống tự động tìm và gửi thông báo đến tài xế rảnh gần nhất.
+- **Chuyển tiếp đơn:** Nếu tài xế từ chối hoặc quá thời gian phản hồi (timeout), đơn hàng tự động được chuyển sang tài xế tiếp theo mà không làm gián đoạn trải nghiệm của khách.
+
+### 2. Giai đoạn 2: Di chuyển & Theo dõi Realtime
+- **Xác nhận:** Khách nhận được thông tin tài xế, biển số xe .
+- **Cập nhật tiến trình:** Tài xế thao tác lần lượt các trạng thái: *Đã đón khách -> Hoàn thành chuyến đi*.
+- **Định vị:** Vị trí di chuyển được cập nhật liên tục qua GPS thời gian thực.
+
+### 3. Giai đoạn 3: Thanh toán & Kết thúc
+- **Xử lý thanh toán:** Hỗ trợ thanh toán bằng Tiền mặt hoặc Điện tử qua cổng trung gian. Trường hợp lỗi thanh toán điện tử, hệ thống cho phép chọn lại phương thức khác.
+- **Đánh giá:** Khách hàng chấm điểm và gửi phản hồi chất lượng sau khi hoàn thành.
+- **Khôi phục trạng thái:** Tài xế trở lại trạng thái sẵn sàng nhận đơn mới.
 ##  System Architecture & Diagrams
 
 ###  Use Case Diagram
