@@ -1,2 +1,153 @@
+# =====================================================================
+# BỘ 4: API TÍCH HỢP THANH TOÁN (FARE & PAYMENT APIs)
+# =====================================================================
+openapi: 3.0.3
+info:
+  title: CAB System - Fare & Payment APIs
+  version: 1.0.0
+paths:
+  /bookings/estimate-fare:
+    post:
+      summary: Tính cước dự kiến & ETA trước khi đặt chuyến [FR-13]
+      tags:
+        - Payment & Fare Module
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [pickup_lat, pickup_lng, dropoff_lat, dropoff_lng, vehicle_type]
+              properties:
+                pickup_lat:
+                  type: number
+                  example: 10.7725
+                pickup_lng:
+                  type: number
+                  example: 106.6980
+                dropoff_lat:
+                  type: number
+                  example: 10.8185
+                dropoff_lng:
+                  type: number
+                  example: 106.6588
+                vehicle_type:
+                  type: string
+                  enum: [BIKE, CAR_4S, CAR_7S]
+                  example: "CAR_4S"
+      responses:
+        '200':
+          description: Trả về số tiền cước dự kiến và thời gian di chuyển
 
-mmm
+  /payments/checkout:
+    post:
+      summary: Khởi tạo giao dịch thanh toán điện tử qua cổng trung gian (3rd Party Gateway) [FR-14]
+      description: Tích hợp với nhà cung cấp bên ngoài nhưng không lưu trữ thông tin thẻ nhạy cảm trên hệ thống CAB[cite: 1].
+      tags:
+        - Payment & Fare Module
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [booking_id, payment_gateway]
+              properties:
+                booking_id:
+                  type: string
+                  example: "BOOKING_2026_001"
+                payment_gateway:
+                  type: string
+                  enum: [MOMO, VNPAY, ZALOPAY]
+                  example: "VNPAY"
+      responses:
+        '200':
+          description: Trả về URL chuyển hướng hoặc mã QR thanh toán của cổng trung gian
+
+  /payments/webhook/{gateway}:
+    post:
+      summary: Nhận kết quả phản hồi (Callback / Webhook) từ cổng thanh toán bên thứ ba
+      tags:
+        - Payment & Fare Module
+      parameters:
+        - name: gateway
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [momo, vnpay, zalopay]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transaction_id:
+                  type: string
+                  example: "TXN_987654321"
+                booking_id:
+                  type: string
+                  example: "BOOKING_2026_001"
+                status:
+                  type: string
+                  enum: [SUCCESS, FAILED]
+                  example: "SUCCESS"
+                amount:
+                  type: number
+                  example: 120000
+      responses:
+        '200':
+          description: Hệ thống ghi nhận kết quả giao dịch thành công
+
+  /payments/{booking_id}/switch-to-cash:
+    post:
+      summary: Xử lý ngoại lệ thanh toán - Chuyển sang thanh toán Tiền mặt khi điện tử thất bại [EX-02]
+      description: Trường hợp giao dịch điện tử lỗi, thông báo cho khách hàng và cho phép chuyển đổi phương thức thanh toán theo chính sách[cite: 1].
+      tags:
+        - Payment & Fare Module
+      parameters:
+        - name: booking_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  example: "PAYMENT_GATEWAY_TIMEOUT"
+      responses:
+        '200':
+          description: Đã chuyển đổi phương thức thanh toán sang Tiền mặt thành công
+
+  /payments/{booking_id}/cash-confirm:
+    post:
+      summary: Tài xế xác nhận đã thu tiền mặt từ khách hàng sau chuyến đi
+      tags:
+        - Payment & Fare Module
+      parameters:
+        - name: booking_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [amount_collected]
+              properties:
+                amount_collected:
+                  type: number
+                  example: 120000
+      responses:
+        '200':
+          description: Xác nhận hoàn tất thanh toán tiền mặt và đóng chuyến đi
