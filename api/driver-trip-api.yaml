@@ -1,0 +1,23 @@
+openapi: 3.0.3
+info:
+  title: CAB System - Driver Trip Progress API
+  version: 1.0.0
+paths:
+  /api/v1/trips/{booking_id}/status:
+    patch:
+      summary: Cập nhật trạng thái chuyến đi
+      parameters: [{ name: booking_id, in: path, required: true, schema: { type: string } }]
+      responses: { '200': { description: "Success" } }
+  /api/v1/driver/location:
+    post:
+      summary: Gửi tọa độ GPS định kỳ
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                latitude: { type: number }
+                longitude: { type: number }
+      responses: { '200': { description: "Success" } }
