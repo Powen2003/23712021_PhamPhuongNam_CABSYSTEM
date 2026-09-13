@@ -1,0 +1,14 @@
+openapi: 3.0.3
+info:
+  title: CAB System - Notification API
+  version: 1.0.0
+paths:
+  /api/v1/notifications:
+    get:
+      summary: Lấy danh sách thông báo cá nhân
+      responses: { '200': { description: "Success" } }
+  /api/v1/notifications/{id}/read:
+    patch:
+      summary: Đánh dấu thông báo đã đọc
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      responses: { '200': { description: "Success" } }
