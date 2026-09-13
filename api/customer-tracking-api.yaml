@@ -1,0 +1,19 @@
+openapi: 3.0.3
+info:
+  title: CAB System - Customer Tracking & Rating API
+  version: 1.0.0
+paths:
+  /api/v1/trips/{booking_id}/tracking:
+    get:
+      summary: Theo dõi vị trí xe realtime
+      parameters: [{ name: booking_id, in: path, required: true, schema: { type: string } }]
+      responses: { '200': { description: "Success" } }
+  /api/v1/customer/trips/history:
+    get:
+      summary: Xem lịch sử chuyến đi
+      responses: { '200': { description: "Success" } }
+  /api/v1/customer/trips/{booking_id}/rate:
+    post:
+      summary: Đánh giá tài xế
+      parameters: [{ name: booking_id, in: path, required: true, schema: { type: string } }]
+      responses: { '201': { description: "Created" } }
