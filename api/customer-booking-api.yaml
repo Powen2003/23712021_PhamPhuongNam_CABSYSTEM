@@ -1,1 +1,31 @@
 
+openapi: 3.0.3
+info:
+  title: CAB System - Customer Booking API
+  version: 1.0.0
+paths:
+  /api/v1/bookings/estimate-fare:
+    post:
+      summary: Tính cước dự kiến & ETA
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pickup_lat: { type: number }
+                pickup_lng: { type: number }
+                dropoff_lat: { type: number }
+                dropoff_lng: { type: number }
+                vehicle_type: { type: string }
+      responses: { '200': { description: "Success" } }
+  /api/v1/bookings:
+    post:
+      summary: Gửi yêu cầu đặt xe
+      responses: { '201': { description: "Created" } }
+  /api/v1/bookings/{booking_id}/cancel:
+    post:
+      summary: Hủy chuyến xe
+      parameters: [{ name: booking_id, in: path, required: true, schema: { type: string } }]
+      responses: { '200': { description: "Success" } }
