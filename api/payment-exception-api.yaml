@@ -1,0 +1,15 @@
+openapi: 3.0.3
+info:
+  title: CAB System - Payment Exceptions & Cash API
+  version: 1.0.0
+paths:
+  /api/v1/payments/{booking_id}/switch-to-cash:
+    post:
+      summary: Đổi sang thanh toán tiền mặt khi lỗi
+      parameters: [{ name: booking_id, in: path, required: true, schema: { type: string } }]
+      responses: { '200': { description: "Success" } }
+  /api/v1/payments/{booking_id}/cash-confirm:
+    post:
+      summary: Xác nhận đã thu tiền mặt
+      parameters: [{ name: booking_id, in: path, required: true, schema: { type: string } }]
+      responses: { '200': { description: "Success" } }
