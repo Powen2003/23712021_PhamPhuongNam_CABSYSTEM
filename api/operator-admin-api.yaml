@@ -1,0 +1,30 @@
+openapi: 3.0.3
+info:
+  title: CAB System - Operator & Admin API
+  version: 1.0.0
+paths:
+  /api/v1/auth/operator/login:
+    post:
+      summary: Nhân viên vận hành đăng nhập
+      responses: { '200': { description: "Success" } }
+  /api/v1/admin/trips/active:
+    get:
+      summary: Giám sát các chuyến đi realtime
+      responses: { '200': { description: "Success" } }
+  /api/v1/admin/trips/{booking_id}/intervene:
+    post:
+      summary: Can thiệp hỗ trợ xử lý sự cố chuyến đi
+      parameters: [{ name: booking_id, in: path, required: true, schema: { type: string } }]
+      responses: { '200': { description: "Success" } }
+  /api/v1/admin/reports/revenue:
+    get:
+      summary: Xem báo cáo doanh thu
+      responses: { '200': { description: "Success" } }
+  /api/v1/admin/reports/cancellation-rate:
+    get:
+      summary: Xem thống kê hủy/hoàn thành chuyến
+      responses: { '200': { description: "Success" } }
+  /api/v1/admin/audit-logs:
+    get:
+      summary: Tra cứu nhật ký hệ thống
+      responses: { '200': { description: "Success" } }
