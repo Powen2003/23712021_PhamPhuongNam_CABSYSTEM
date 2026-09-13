@@ -1,0 +1,14 @@
+openapi: 3.0.3
+info:
+  title: CAB System - Payment Processing API
+  version: 1.0.0
+paths:
+  /api/v1/payments/checkout:
+    post:
+      summary: Khởi tạo giao dịch thanh toán điện tử
+      responses: { '200': { description: "Success" } }
+  /api/v1/payments/webhook/{gateway}:
+    post:
+      summary: Nhận webhook từ cổng thanh toán bên thứ 3
+      parameters: [{ name: gateway, in: path, required: true, schema: { type: string } }]
+      responses: { '200': { description: "Success" } }
